@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.revature.entity.VideoGame;
 import com.revature.repository.VideoGameRepository;
 
+import java.util.List;
+
 @Service
 public class VideoGameService {
 
@@ -25,5 +27,9 @@ public class VideoGameService {
         }
 
         return videoGameRepository.save(game);
+    }
+
+    public List<VideoGame> getAllVideoGames() {
+        return videoGameRepository.findAll();
     }
 }
