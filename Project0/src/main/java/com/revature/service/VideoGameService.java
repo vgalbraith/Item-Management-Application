@@ -22,7 +22,7 @@ public class VideoGameService {
 
     public VideoGame persistVideoGame(VideoGame game) {
 
-        if (game.getTitle().equals("")) {
+        if (game.getTitle().isEmpty()) {
             throw new BadRequestException("Game title cannot be blank.");
         }
 
@@ -31,5 +31,9 @@ public class VideoGameService {
 
     public List<VideoGame> getAllVideoGames() {
         return videoGameRepository.findAll();
+    }
+
+    public VideoGame getVideoGameById(int game_id) {
+        return videoGameRepository.findById(game_id).orElse(null);
     }
 }

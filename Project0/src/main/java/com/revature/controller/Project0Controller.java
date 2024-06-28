@@ -4,10 +4,7 @@ import com.revature.entity.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.revature.entity.Account;
 import com.revature.service.AccountService;
@@ -28,15 +25,22 @@ public class Project0Controller {
     }
 
     @PostMapping("/games")
-    public ResponseEntity<VideoGame> addGame(@RequestBody VideoGame game) {
+    public ResponseEntity<VideoGame> addVideoGame(@RequestBody VideoGame game) {
         VideoGame addedGame = videoGameService.persistVideoGame(game);
         return new ResponseEntity<>(addedGame, HttpStatus.OK);
     }
 
     @GetMapping("/games")
-    public ResponseEntity<List<VideoGame>> viewAllGames() {
+    public ResponseEntity<List<VideoGame>> viewAllVideoGames() {
         List<VideoGame> games = videoGameService.getAllVideoGames();
-        return new ResponseEntity<List<VideoGame>>(games, HttpStatus.OK);
+        return new ResponseEntity<>(games, HttpStatus.OK);
+    }
+
+    @GetMapping("/games/{game_id}")
+    public ResponseEntity<VideoGame> getVideoGameById(@PathVariable int game_id) {
+        VideoGame game = videoGameService.getVideoGameById(game_id);
+        if (game == null) return null;
+        return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
     @PostMapping("/register")
