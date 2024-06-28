@@ -20,6 +20,12 @@ public class VideoGameService {
         this.videoGameRepository = videoGameRepository;
     }
 
+    /**
+     * Used to persist a VideoGame to the repository.
+     * @param game The VideoGame to be added.
+     * @return The persisted VideoGame including it's newly assigned game_id.
+     * @throws BadRequestException if there's an issue with the client's request.
+     */
     public VideoGame persistVideoGame(VideoGame game) {
 
         if (game.getTitle().isEmpty()) {
@@ -29,11 +35,48 @@ public class VideoGameService {
         return videoGameRepository.save(game);
     }
 
+    /**
+     * Used to retrieve all VideoGame objects from the repository.
+     * @return A list of all VideoGame objects.
+     */
     public List<VideoGame> getAllVideoGames() {
         return videoGameRepository.findAll();
     }
 
+    /**
+     * Used to retrieve a VideoGame from the repository given it's game_id.
+     * @param game_id
+     * @return The associated VideoGame object, null if game_id not found.
+     */
     public VideoGame getVideoGameById(int game_id) {
         return videoGameRepository.findById(game_id).orElse(null);
+    }
+
+    /**
+     * Used to update a VideoGame in the repository given it's game_id.
+     * @param game_id
+     * @param game to update existing VideoGame variables.
+     * @return The number of rows affected.
+     * @throws BadRequestException if there's an issue with the client's request.
+     */
+    public int updateVideoGame(int game_id, VideoGame game) {
+
+        if (!videoGameRepository.existsById(game_id)) {
+            throw new BadRequestException("game_id is invalid.");
+        }
+
+        if (game.getTitle().isEmpty()) {
+            throw new BadRequestException("Game title cannot be blank.");
+        }
+
+        if (game.getTitle().length() >= 50) {
+            throw new BadRequestException("Game title must be less than 50 characters long.");
+        }
+
+        VideoGame updatedVideoGame = this.getVideoGameById(game_id);
+        updatedVideoGame.setTitle(game.getTitle());
+        updatedVideoGame.setOwned_by(game.getOwned_by());
+        videoGameRepository.save(updatedVideoGame);
+        return 1;
     }
 }
