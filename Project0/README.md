@@ -8,17 +8,17 @@
 Using Spring Boot (optional), create a simple API for creating and managing items. The items can be whatever you want (i.e. Collectibles, Animals, Employees, Video Games, Shoes, Clothing, etc). Your goal will be to build an API that allows you to store these items and track them as needed.
 
 ## Requirements
-- [x] Build the application using at least Java 17 and Spring Boot 3
+- Build the application using at least Java 17 and Spring Boot 3
 
-- [ ] All interactions between a User and the API should happen via HTTP Requests. Using a tool like Postman will allow you to set up these requests.
+- All interactions between a User and the API should happen via HTTP Requests. Using a tool like Postman will allow you to set up these requests.
 
-- [ ] All data should be stored in a PostgreSQL database.
+- All data should be stored in a PostgreSQL database.
 
-- [ ] The goal of this project is to review basic application design and structure
+- The goal of this project is to review basic application design and structure
 
-- [ ] You'll be expected to complete 4 of the following User Stories as a **MINIMUM**. The more stories implemented the better, but make sure you have at least 4 of the following:
+- You'll be expected to complete 4 of the following User Stories as a **MINIMUM**. The more stories implemented the better, but make sure you have at least 4 of the following:
 
-    - [ ] As a user, I can create a new Item
+    - [x] As a user, I can create a new Item
     - [ ] As a user, I can view all Items
     - [ ] As a user, I can view a singular Item by its ID (HINT: Use Path Params to select a Item by its ID)
     - [ ] As a user, I can update a Item (Change the name or other properties)

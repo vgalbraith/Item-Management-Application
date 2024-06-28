@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import com.revature.entity.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,12 @@ public class Project0Controller {
     public Project0Controller(AccountService accountService, VideoGameService videoGameService) {
         this.accountService = accountService;
         this.videoGameService = videoGameService;
+    }
+
+    @PostMapping("/games")
+    public ResponseEntity<VideoGame> addGame(@RequestBody VideoGame game) {
+        VideoGame addedGame = videoGameService.persistVideoGame(game);
+        return new ResponseEntity<VideoGame>(addedGame, HttpStatus.OK);
     }
 
     @PostMapping("/register")

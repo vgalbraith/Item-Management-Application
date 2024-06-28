@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import com.revature.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,14 @@ public class VideoGameService {
     @Autowired
     public VideoGameService(VideoGameRepository videoGameRepository) {
         this.videoGameRepository = videoGameRepository;
+    }
+
+    public VideoGame persistVideoGame(VideoGame game) {
+
+        if (game.getTitle().equals("")) {
+            throw new BadRequestException("Game title cannot be blank.");
+        }
+
+        return videoGameRepository.save(game);
     }
 }
