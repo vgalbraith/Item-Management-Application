@@ -11,6 +11,8 @@ import com.revature.repository.AccountRepository;
 
 @Service
 public class AccountService {
+
+    @Autowired
     AccountRepository accountRepository;
 
     @Autowired

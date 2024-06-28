@@ -1,11 +1,15 @@
 package com.revature.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
+import java.util.Objects;
 
 @Entity
+@Table (name="video_games")
 public class VideoGame {
+
     @Column (name="game_id")
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer game_id;
 
     @Column (name="title")
@@ -19,6 +23,12 @@ public class VideoGame {
 
     public VideoGame(String title) {
         this.title = title;
+    }
+
+    public VideoGame(Integer game_id, String title, Integer owned_by) {
+        this.game_id = game_id;
+        this.title = title;
+        this.owned_by = owned_by;
     }
 
     public Integer getGame_id() {
@@ -46,37 +56,23 @@ public class VideoGame {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        VideoGame other = (VideoGame) obj;
-        if (game_id == null) {
-            if (other.game_id != null)
-                return false;
-        } else if (!game_id.equals(other.game_id))
-            return false;
-        if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        if (owned_by == null) {
-            if (other.owned_by != null)
-                return false;
-        } else if (!owned_by.equals(other.owned_by))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VideoGame videoGame = (VideoGame) o;
+        return Objects.equals(game_id, videoGame.game_id) && Objects.equals(title, videoGame.title) && Objects.equals(owned_by, videoGame.owned_by);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(game_id, title, owned_by);
     }
 
     @Override
     public String toString() {
         return "VideoGame{" +
                 "game_id=" + game_id +
-                ", title=" + title + '\'' +
+                ", title='" + title + '\'' +
                 ", owned_by=" + owned_by +
                 '}';
     }

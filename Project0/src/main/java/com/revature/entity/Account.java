@@ -1,19 +1,24 @@
 package com.revature.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
+import java.util.Objects;
 
 @Entity
+@Table (name="Accounts")
 public class Account {
 
-    @Id @GeneratedValue
+    @Column (name="account_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer account_id;
 
+    @Column (name="username")
     private String username;
 
+    @Column (name="password")
     private String password;
 
     public Account() {
-
     }
 
     public Account(String username, String password) {
@@ -52,30 +57,16 @@ public class Account {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Account other = (Account) obj;
-        if (account_id == null) {
-            if (other.account_id != null)
-                return false;
-        } else if (!account_id.equals(other.account_id))
-            return false;
-        if (password == null) {
-            if (other.password != null)
-                return false;
-        } else if (!password.equals(other.password))
-            return false;
-        if (username == null) {
-            if (other.username != null)
-                return false;
-        } else if (!username.equals(other.username))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(account_id, account.account_id) && Objects.equals(username, account.username) && Objects.equals(password, account.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(account_id, username, password);
     }
 
     @Override
@@ -86,4 +77,5 @@ public class Account {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

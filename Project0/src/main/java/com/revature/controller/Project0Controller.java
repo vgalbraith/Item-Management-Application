@@ -14,8 +14,8 @@ import com.revature.service.VideoGameService;
 @RestController
 public class Project0Controller {
 
-    private final AccountService accountService;
-    private final VideoGameService videoGameService;
+    AccountService accountService;
+    VideoGameService videoGameService;
 
     @Autowired
     public Project0Controller(AccountService accountService, VideoGameService videoGameService) {

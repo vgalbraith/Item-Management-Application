@@ -8,6 +8,8 @@ import com.revature.repository.VideoGameRepository;
 
 @Service
 public class VideoGameService {
+
+    @Autowired
     VideoGameRepository videoGameRepository;
 
     @Autowired
