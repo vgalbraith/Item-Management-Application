@@ -1,31 +1,24 @@
 package com.revature.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entity.Account;
-import com.revature.entity.VideoGame;
 import com.revature.service.AccountService;
 import com.revature.service.VideoGameService;
 
 @RestController
 public class Project0Controller {
 
-    private final accountService;
-    private final videoGameService;
+    private final AccountService accountService;
+    private final VideoGameService videoGameService;
 
     @Autowired
-    public SocialMediaController(AccountService accountService, VideoGameService videoGameService) {
+    public Project0Controller(AccountService accountService, VideoGameService videoGameService) {
         this.accountService = accountService;
         this.videoGameService = videoGameService;
     }
