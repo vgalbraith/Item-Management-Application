@@ -18,7 +18,6 @@ Project 0 is focused on creating a simple API for managing items. The items can 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [License](#license)
 
 #### Introduction
 
