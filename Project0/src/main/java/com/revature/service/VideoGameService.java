@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import com.revature.entity.Account;
 import com.revature.exception.BadRequestException;
 import com.revature.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +101,14 @@ public class VideoGameService {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * Endpoint for retrieving all VideoGame objects owned by the given account_id.
+     * @param account_id
+     * @return A list of all applicable VideoGame objects.
+     */
+    public List<VideoGame> viewAccountInventory(int account_id) {
+        return videoGameRepository.findAllByAccountId(account_id);
     }
 }

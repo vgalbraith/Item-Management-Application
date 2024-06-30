@@ -85,7 +85,7 @@ public class Project0Controller {
      * @param account The Account to be registered.
      * @return The persisted Account including it's newly assigned account_id.
      */
-    @PostMapping("/register")
+    @PostMapping("/account/register")
     public ResponseEntity<Account> registerAccount(@RequestBody Account account) {
         Account addedAccount = accountService.persistAccount(account);
         return new ResponseEntity<>(addedAccount, HttpStatus.OK);
@@ -96,9 +96,21 @@ public class Project0Controller {
      * @param account An account containing a username/password combination to be verified.
      * @return The verified account object.
      */
-    @PostMapping("/login")
+    @PostMapping("/account/login")
     public ResponseEntity<Account> loginAccount(@RequestBody Account account) {
         Account verifiedAccount = accountService.verifyAccount(account);
         return new ResponseEntity<>(verifiedAccount, HttpStatus.OK);
+    }
+
+    /**
+     * Endpoint for retrieving all VideoGame objects owned by the given Account.
+     * @param account
+     * @return A list of all applicable VideoGame objects.
+     */
+    @GetMapping("/account/games")
+    public ResponseEntity<List<VideoGame>> ViewAccountInventory(@RequestBody Account account) {
+        Account verifiedAccount = accountService.verifyAccount(account);
+        List<VideoGame> inventory = videoGameService.viewAccountInventory(verifiedAccount.getAccount_id());
+        return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 }
