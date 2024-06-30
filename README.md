@@ -58,9 +58,9 @@ API Endpoints:
 - `GET /games/{game_id}`: As a user, I can view a singular VideoGame object by its game_id
 - `PATCH /games/{game_id}`: As a user, I can update an VideoGame object
 - `DELETE /games/{game_id}`: As a user, I can delete an VideoGame object by its game_id
-- `POST /register`: As a user, I can create an Account to hold my VideoGame objects
-- `POST /login`: As a user, I can login to my Account
-- `POST /account`: As a user, I can view the VideoGame objects associated with my Account
+- `POST /account/register`: As a user, I can create an Account to hold my VideoGame objects
+- `POST /account/login`: As a user, I can login to my Account
+- `POST /account/games`: As a user, I can view the VideoGame objects associated with my Account
 
 #### Features
 
