@@ -26,7 +26,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for creating a new VideoGame.
-     * @param game The message to be created.
+     * @param game The VideoGame to be created.
      * @return The persisted VideoGame including it's newly assigned game_id.
      */
     @PostMapping("/games")
@@ -66,6 +66,17 @@ public class Project0Controller {
     @PatchMapping("/games/{game_id}")
     public ResponseEntity<Integer> updateVideoGame(@PathVariable int game_id, @RequestBody VideoGame game) {
         int rows = videoGameService.updateVideoGame(game_id, game);
+        return new ResponseEntity<Integer>(rows, HttpStatus.OK);
+    }
+
+    /**
+     * Endpoint for deleting a VideoGame given it's game_id.
+     * @param game_id
+     * @return The number of rows affected.
+     */
+    @DeleteMapping("/games/{game_id}")
+    public ResponseEntity<Integer> deleteVideoGame(@PathVariable int game_id) {
+        int rows = videoGameService.deleteVideoGame(game_id);
         return new ResponseEntity<Integer>(rows, HttpStatus.OK);
     }
 

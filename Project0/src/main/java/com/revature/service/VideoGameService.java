@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.exception.BadRequestException;
+import com.revature.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class VideoGameService {
 
     @Autowired
     VideoGameRepository videoGameRepository;
+    AccountRepository accountRepository;
 
     @Autowired
     public VideoGameService(VideoGameRepository videoGameRepository) {
@@ -65,6 +67,10 @@ public class VideoGameService {
             throw new BadRequestException("game_id is invalid.");
         }
 
+//        if (!accountRepository.existsById(game.getOwned_by())) {
+//            throw new BadRequestException("account_id is invalid.");
+//        }
+
         if (game.getTitle().isEmpty()) {
             throw new BadRequestException("Game title cannot be blank.");
         }
@@ -78,5 +84,19 @@ public class VideoGameService {
         updatedVideoGame.setOwned_by(game.getOwned_by());
         videoGameRepository.save(updatedVideoGame);
         return 1;
+    }
+
+    /**
+     * Used to delete a VideoGame from the repository given it's game_id.
+     * @param game_id
+     * @return The number of rows affected.
+     */
+    public int deleteVideoGame(int game_id) {
+        if (videoGameRepository.existsById(game_id)) {
+            videoGameRepository.deleteById(game_id);
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
