@@ -20,8 +20,15 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
+    /**
+     * Used to persist an Account to the repository.
+     * @param account The Account to be added.
+     * @return The persisted Account including it's newly assigned account_id.
+     * @throws BadRequestException if there's an issue with the client's request.
+     * @throws ConflictException if the username is already associated with a registered Account.
+     */
     public Account persistAccount(Account account) {
-        if (account.getUsername().equals("")) {
+        if (account.getUsername().isEmpty()) {
             throw new BadRequestException("Username cannot be blank.");
         }
 

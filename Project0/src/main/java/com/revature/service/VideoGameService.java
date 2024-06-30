@@ -18,8 +18,9 @@ public class VideoGameService {
     AccountRepository accountRepository;
 
     @Autowired
-    public VideoGameService(VideoGameRepository videoGameRepository) {
+    public VideoGameService(VideoGameRepository videoGameRepository, AccountRepository accountRepository) {
         this.videoGameRepository = videoGameRepository;
+        this.accountRepository = accountRepository;
     }
 
     /**
@@ -57,7 +58,7 @@ public class VideoGameService {
     /**
      * Used to update a VideoGame in the repository given it's game_id.
      * @param game_id
-     * @param game to update existing VideoGame variables.
+     * @param game VideoGame object containing updated variables.
      * @return The number of rows affected.
      * @throws BadRequestException if there's an issue with the client's request.
      */
@@ -67,9 +68,9 @@ public class VideoGameService {
             throw new BadRequestException("game_id is invalid.");
         }
 
-//        if (!accountRepository.existsById(game.getOwned_by())) {
-//            throw new BadRequestException("account_id is invalid.");
-//        }
+        if (game.getOwned_by() != null && !accountRepository.existsById(game.getOwned_by())) {
+            throw new BadRequestException("account_id is invalid.");
+        }
 
         if (game.getTitle().isEmpty()) {
             throw new BadRequestException("Game title cannot be blank.");
@@ -81,6 +82,7 @@ public class VideoGameService {
 
         VideoGame updatedVideoGame = this.getVideoGameById(game_id);
         updatedVideoGame.setTitle(game.getTitle());
+        updatedVideoGame.setPlatform(game.getPlatform());
         updatedVideoGame.setOwned_by(game.getOwned_by());
         videoGameRepository.save(updatedVideoGame);
         return 1;

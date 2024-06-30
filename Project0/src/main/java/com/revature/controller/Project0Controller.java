@@ -80,6 +80,11 @@ public class Project0Controller {
         return new ResponseEntity<Integer>(rows, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for registering a new Account.
+     * @param account The Account to be registered.
+     * @return The persisted Account including it's newly assigned account_id.
+     */
     @PostMapping("/register")
     public ResponseEntity<Account> registerAccount(@RequestBody Account account) {
         Account addedAccount = accountService.persistAccount(account);

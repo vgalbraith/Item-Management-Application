@@ -7,5 +7,4 @@ import com.revature.entity.VideoGame;
 
 @Repository
 public interface VideoGameRepository extends JpaRepository<VideoGame, Integer> {
-    VideoGame findVideoGameByTitle(String title);
 }
