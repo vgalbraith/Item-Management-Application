@@ -43,6 +43,12 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    /**
+     * Used to verify a login.
+     * @param account Account object containing the username and password to verify.
+     * @return The verified Account object.
+     * @throws UnauthorizedException if the username and/or password are invalid.
+     */
     public Account verifyAccount(Account account) {
         Account verifiedAccount = accountRepository.findAccountByUsername(account.getUsername());
         if (verifiedAccount == null) {

@@ -91,6 +91,11 @@ public class Project0Controller {
         return new ResponseEntity<>(addedAccount, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint for verifying a user login.
+     * @param account An account containing a username/password combination to be verified.
+     * @return The verified account object.
+     */
     @PostMapping("/login")
     public ResponseEntity<Account> loginAccount(@RequestBody Account account) {
         Account verifiedAccount = accountService.verifyAccount(account);
