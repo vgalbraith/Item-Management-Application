@@ -1,11 +1,11 @@
-package com.revature.repository;
+package com.revature.Project0.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.revature.entity.VideoGame;
+import com.revature.Project0.model.VideoGame;
 
 import java.util.List;
 

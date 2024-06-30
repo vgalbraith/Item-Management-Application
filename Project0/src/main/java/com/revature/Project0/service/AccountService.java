@@ -1,13 +1,13 @@
-package com.revature.service;
+package com.revature.Project0.service;
 
+import com.revature.Project0.exception.BadRequestException;
+import com.revature.Project0.exception.ConflictException;
+import com.revature.Project0.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.entity.Account;
-import com.revature.exception.ConflictException;
-import com.revature.exception.UnauthorizedException;
-import com.revature.exception.BadRequestException;
-import com.revature.repository.AccountRepository;
+import com.revature.Project0.model.Account;
+import com.revature.Project0.repository.AccountRepository;
 
 @Service
 public class AccountService {

@@ -1,4 +1,4 @@
-package com.revature.entity;
+package com.revature.Project0.model;
 
 import jakarta.persistence.*;
 
