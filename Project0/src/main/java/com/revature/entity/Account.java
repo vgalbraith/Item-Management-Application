@@ -21,11 +21,6 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     public Account(Integer account_id, String username, String password) {
         this.account_id = account_id;
         this.username = username;

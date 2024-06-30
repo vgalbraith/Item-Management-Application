@@ -25,7 +25,6 @@ public class UserRegistrationTest {
 	/**
 	 * TODO: reset the database
 	 * Before every test, reset the database, restart the app, and create a new webClient and ObjectMapper
-	 * for interacting locally on the web.
 	 * @throws InterruptedException
 	 */
 	@BeforeEach

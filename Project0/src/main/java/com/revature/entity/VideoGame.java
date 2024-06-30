@@ -24,13 +24,10 @@ public class VideoGame {
     public VideoGame() {
     }
 
-    public VideoGame(String title) {
-        this.title = title;
-    }
-
-    public VideoGame(Integer game_id, String title, Integer owned_by) {
+    public VideoGame(Integer game_id, String title, String platform, Integer owned_by) {
         this.game_id = game_id;
         this.title = title;
+        this.platform = platform;
         this.owned_by = owned_by;
     }
 

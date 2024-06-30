@@ -24,9 +24,7 @@ public class UserLoginTest {
 	ObjectMapper objectMapper;
 
 	/**
-	 * TODO: reset the database
-	 * Before every test, reset the database, restart the app, and create a new webClient and ObjectMapper
-	 * for interacting locally on the web.
+	 * Before every test: restart the app, and create a new webClient and ObjectMapper
 	 * @throws InterruptedException
 	 */
 	@BeforeEach
@@ -64,7 +62,7 @@ public class UserLoginTest {
 		Assertions.assertEquals(200, status);
 		ObjectMapper om = new ObjectMapper();
 		Account expectedResult = new Account(1, "user1", "pass1");
-		Account actualResult = om.readValue(response.body().toString(), Account.class);
+		Account actualResult = om.readValue(response.body(), Account.class);
 		Assertions.assertEquals(expectedResult, actualResult);
 	}
 
