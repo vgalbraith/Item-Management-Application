@@ -1,4 +1,4 @@
-package com.revature.Project0;
+package com.revature;
 
 import java.io.IOException;
 

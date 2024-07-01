@@ -1,4 +1,4 @@
-package com.revature.Project0.model;
+package com.revature.model;
 
 import jakarta.persistence.*;
 
@@ -8,17 +8,18 @@ import java.util.Objects;
 @Table(name="Video_games")
 public class VideoGame {
 
-    @Column (name="game_id")
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="game_id")
     private Integer game_id;
 
-    @Column (name="title")
+    @Column(name="title")
     private String title;
 
-    @Column (name="platform")
+    @Column(name="platform")
     private String platform;
 
-    @Column (name="owned_by")
+    @Column(name="owned_by")
     private Integer owned_by;
 
     public VideoGame() {

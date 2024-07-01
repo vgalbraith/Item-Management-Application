@@ -1,4 +1,4 @@
-package com.revature.Project0;
+package com.revature;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.revature.Project0.model.Account;
+import com.revature.model.Account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class UserLoginTest {

@@ -1,14 +1,14 @@
-package com.revature.Project0.controller;
+package com.revature.controller;
 
-import com.revature.Project0.service.AccountService;
-import com.revature.Project0.service.VideoGameService;
-import com.revature.Project0.model.VideoGame;
+import com.revature.service.AccountService;
+import com.revature.service.VideoGameService;
+import com.revature.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.revature.Project0.model.Account;
+import com.revature.model.Account;
 
 import java.util.List;
 

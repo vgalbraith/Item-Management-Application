@@ -1,19 +1,18 @@
-package com.revature.Project0.service;
+package com.revature.service;
 
-import com.revature.Project0.exception.BadRequestException;
-import com.revature.Project0.repository.VideoGameRepository;
-import com.revature.Project0.repository.AccountRepository;
+import com.revature.exception.BadRequestException;
+import com.revature.repository.VideoGameRepository;
+import com.revature.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.Project0.model.VideoGame;
+import com.revature.model.VideoGame;
 
 import java.util.List;
 
 @Service
 public class VideoGameService {
 
-    @Autowired
     VideoGameRepository videoGameRepository;
     AccountRepository accountRepository;
 

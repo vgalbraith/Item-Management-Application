@@ -1,4 +1,4 @@
-package com.revature.Project0;
+package com.revature;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.revature.Project0.model.VideoGame;
+import com.revature.model.VideoGame;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CreateVideoGameTest {
