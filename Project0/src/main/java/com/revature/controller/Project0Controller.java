@@ -103,14 +103,13 @@ public class Project0Controller {
     }
 
     /**
-     * Endpoint for retrieving all VideoGame objects owned by the given Account.
-     * @param account
+     * Endpoint for retrieving all VideoGame objects owned by the given account_id.
+     * @param account_id
      * @return A list of all applicable VideoGame objects.
      */
-    @GetMapping("/account/games")
-    public ResponseEntity<List<VideoGame>> ViewAccountInventory(@RequestBody Account account) {
-        Account verifiedAccount = accountService.verifyAccount(account);
-        List<VideoGame> inventory = videoGameService.viewAccountInventory(verifiedAccount.getAccount_id());
+    @GetMapping("/account/{account_id}")
+    public ResponseEntity<List<VideoGame>> ViewAccountInventory(@PathVariable int account_id) {
+        List<VideoGame> inventory = videoGameService.viewAccountInventory(account_id);
         return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 }

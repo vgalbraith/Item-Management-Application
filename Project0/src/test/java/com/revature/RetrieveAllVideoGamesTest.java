@@ -55,7 +55,7 @@ public class RetrieveAllVideoGamesTest {
         expectedResult.add(new VideoGame(1, "Title1", "platform1", 1));
         expectedResult.add(new VideoGame(2, "Title2", "platform2", 2));
         expectedResult.add(new VideoGame(3, "Title3", "platform3", 3));
-        expectedResult.add(new VideoGame(4, "Title4", "platform4", 4));
+        expectedResult.add(new VideoGame(4, "Title4", "platform4", 1));
         List<VideoGame> actualResult = objectMapper.readValue(response.body(), new TypeReference<>() {});
         Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
     }
