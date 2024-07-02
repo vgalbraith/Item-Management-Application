@@ -1,12 +1,11 @@
 package com.revature.service;
 
 import com.revature.exception.BadRequestException;
-import com.revature.repository.VideoGameRepository;
+import com.revature.model.VideoGame;
 import com.revature.repository.AccountRepository;
+import com.revature.repository.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.revature.model.VideoGame;
 
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class VideoGameService {
 
     /**
      * Used to persist a VideoGame to the repository.
+     *
      * @param game The VideoGame to be added.
      * @return The persisted VideoGame including it's newly assigned game_id.
      * @throws BadRequestException if there's an issue with the client's request.
@@ -43,6 +43,7 @@ public class VideoGameService {
 
     /**
      * Used to retrieve all VideoGame objects from the repository.
+     *
      * @return A list of all VideoGame objects.
      */
     public List<VideoGame> getAllVideoGames() {
@@ -51,6 +52,7 @@ public class VideoGameService {
 
     /**
      * Used to retrieve a VideoGame from the repository given it's game_id.
+     *
      * @param game_id
      * @return The associated VideoGame object, null if game_id not found.
      */
@@ -60,8 +62,9 @@ public class VideoGameService {
 
     /**
      * Used to update a VideoGame in the repository given it's game_id.
+     *
      * @param game_id
-     * @param game VideoGame object containing updated variables.
+     * @param game    VideoGame object containing updated variables.
      * @return The number of rows affected.
      * @throws BadRequestException if there's an issue with the client's request.
      */
@@ -93,6 +96,7 @@ public class VideoGameService {
 
     /**
      * Used to delete a VideoGame from the repository given it's game_id.
+     *
      * @param game_id
      * @return The number of rows affected.
      */
@@ -107,6 +111,7 @@ public class VideoGameService {
 
     /**
      * Endpoint for retrieving all VideoGame objects owned by the given account_id.
+     *
      * @param account_id
      * @return A list of all applicable VideoGame objects.
      */

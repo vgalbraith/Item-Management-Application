@@ -24,14 +24,16 @@ public class RetrieveAllVideoGamesForUserTest {
     ObjectMapper objectMapper;
 
     /**
-     * Before every test: restart the app, and create a new webClient and ObjectMapper
+     * TODO: reset the database
+     * Before every test, reset the database, restart the app, and create a new webClient and ObjectMapper
+     *
      * @throws InterruptedException
      */
     @BeforeEach
     public void setUp() throws InterruptedException {
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        String[] args = new String[] {};
+        String[] args = new String[]{};
         app = SpringApplication.run(Project0Application.class, args);
         Thread.sleep(500);
     }
@@ -44,10 +46,10 @@ public class RetrieveAllVideoGamesForUserTest {
 
     /**
      * Sending an http request to GET localhost:8080/account/{account_id} (games exist for user)
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 200
-     *  Response Body: JSON representation of a list of games
+     * Status Code: 200
+     * Response Body: JSON representation of a list of games
      */
     @Test
     public void getAllVideoGamesFromUserVideoGameExists() throws IOException, InterruptedException {
@@ -59,16 +61,17 @@ public class RetrieveAllVideoGamesForUserTest {
         Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
         List<VideoGame> expectedResult = new ArrayList<VideoGame>();
         expectedResult.add(new VideoGame(2, "Title2", "platform2", 2));
-        List<VideoGame> actualResult = objectMapper.readValue(response.body(), new TypeReference<>() {});
-        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+        List<VideoGame> actualResult = objectMapper.readValue(response.body(), new TypeReference<>() {
+        });
+        Assertions.assertEquals(expectedResult, actualResult, "Expected=" + expectedResult + ", Actual=" + actualResult);
     }
 
     /**
      * Sending an http request to GET localhost:8080/account/{account_id} (games do NOT exist for user)
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 200
-     *  Response Body:
+     * Status Code: 200
+     * Response Body:
      */
     @Test
     public void getAllVideoGamesFromUserNoVideoGamesFound() throws IOException, InterruptedException {
@@ -78,7 +81,8 @@ public class RetrieveAllVideoGamesForUserTest {
         HttpResponse<String> response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
         int status = response.statusCode();
         Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
-        List<VideoGame> actualResult = objectMapper.readValue(response.body(), new TypeReference<>() {});
+        List<VideoGame> actualResult = objectMapper.readValue(response.body(), new TypeReference<>() {
+        });
         Assertions.assertTrue(actualResult.isEmpty(), "Expected Empty Result, but Result was not Empty");
     }
 }

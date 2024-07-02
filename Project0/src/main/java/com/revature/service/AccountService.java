@@ -3,11 +3,10 @@ package com.revature.service;
 import com.revature.exception.BadRequestException;
 import com.revature.exception.ConflictException;
 import com.revature.exception.UnauthorizedException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.revature.model.Account;
 import com.revature.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AccountService {
@@ -21,10 +20,11 @@ public class AccountService {
 
     /**
      * Used to persist an Account to the repository.
+     *
      * @param account The Account to be added.
      * @return The persisted Account including it's newly assigned account_id.
      * @throws BadRequestException if there's an issue with the client's request.
-     * @throws ConflictException if the username is already associated with a registered Account.
+     * @throws ConflictException   if the username is already associated with a registered Account.
      */
     public Account persistAccount(Account account) {
         if (account.getUsername().isEmpty()) {
@@ -44,6 +44,7 @@ public class AccountService {
 
     /**
      * Used to verify a login.
+     *
      * @param account Account object containing the username and password to verify.
      * @return The verified Account object.
      * @throws UnauthorizedException if the username and/or password are invalid.

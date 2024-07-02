@@ -1,11 +1,7 @@
 package com.revature;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.model.VideoGame;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.revature.model.VideoGame;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class CreateVideoGameTest {
     ApplicationContext app;
@@ -24,13 +23,14 @@ public class CreateVideoGameTest {
     /**
      * TODO: reset the database
      * Before every test, reset the database, restart the app, and create a new webClient and ObjectMapper
+     *
      * @throws InterruptedException
      */
     @BeforeEach
     public void setUp() throws InterruptedException {
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        String[] args = new String[] {};
+        String[] args = new String[]{};
         app = SpringApplication.run(Project0Application.class, args);
         Thread.sleep(500);
     }
@@ -44,10 +44,10 @@ public class CreateVideoGameTest {
 
     /**
      * Sending an http request to POST localhost:8080/games with valid credentials
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 200
-     *  Response Body: JSON representation of message object
+     * Status Code: 200
+     * Response Body: JSON representation of message object
      */
     @Test
     public void createVideoGameSuccessful() throws IOException, InterruptedException {
@@ -63,14 +63,14 @@ public class CreateVideoGameTest {
         ObjectMapper om = new ObjectMapper();
         VideoGame expectedResult = new VideoGame(5, "Test Title 1", "PC", 1);
         VideoGame actualResult = om.readValue(response.body(), VideoGame.class);
-        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, "Expected=" + expectedResult + ", Actual=" + actualResult);
     }
 
     /**
      * Sending an http request to POST localhost:8080/games with empty title
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 400
+     * Status Code: 400
      */
     @Test
     public void createVideoGameTitleTextBlank() throws IOException, InterruptedException {
@@ -88,10 +88,10 @@ public class CreateVideoGameTest {
 
     /**
      * Sending an http request to POST localhost:8080/games with title length greater than 99
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 400
-     *  Response Body:
+     * Status Code: 400
+     * Response Body:
      */
     @Test
     public void createVideoGameTitleGreaterThan99() throws IOException, InterruptedException {
@@ -110,9 +110,9 @@ public class CreateVideoGameTest {
 
     /**
      * Sending an http request to POST localhost:8080/games with a user id that doesnt exist in db
-     *
+     * <p>
      * Expected Response:
-     *  Status Code: 400
+     * Status Code: 400
      */
     @Test
     public void createVideoGameUserNotInDb() throws IOException, InterruptedException {

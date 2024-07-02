@@ -1,14 +1,13 @@
 package com.revature.controller;
 
+import com.revature.model.Account;
+import com.revature.model.VideoGame;
 import com.revature.service.AccountService;
 import com.revature.service.VideoGameService;
-import com.revature.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.revature.model.Account;
 
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for creating a new VideoGame.
+     *
      * @param game The VideoGame to be created.
      * @return The persisted VideoGame including it's newly assigned game_id.
      */
@@ -37,6 +37,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for retrieving all VideoGame objects.
+     *
      * @return A list of all VideoGame objects.
      */
     @GetMapping("/games")
@@ -47,6 +48,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for retrieving a VideoGame given it's game_id.
+     *
      * @param game_id
      * @return The associated VideoGame object, empty body if not found.
      */
@@ -59,8 +61,9 @@ public class Project0Controller {
 
     /**
      * Endpoint for updating a VideoGame given it's game_id.
+     *
      * @param game_id
-     * @param game containing VideoGame data to be updated.
+     * @param game    containing VideoGame data to be updated.
      * @return The number of rows affected.
      */
     @PatchMapping("/games/{game_id}")
@@ -71,6 +74,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for deleting a VideoGame given it's game_id.
+     *
      * @param game_id
      * @return The number of rows affected.
      */
@@ -82,6 +86,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for registering a new Account.
+     *
      * @param account The Account to be registered.
      * @return The persisted Account including it's newly assigned account_id.
      */
@@ -93,6 +98,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for verifying a user login.
+     *
      * @param account An account containing a username/password combination to be verified.
      * @return The verified account object.
      */
@@ -104,6 +110,7 @@ public class Project0Controller {
 
     /**
      * Endpoint for retrieving all VideoGame objects owned by the given account_id.
+     *
      * @param account_id
      * @return A list of all applicable VideoGame objects.
      */
