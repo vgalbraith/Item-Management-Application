@@ -10,13 +10,13 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
+    @Column(updatable = false)
     private Integer account_id;
 
-    @Column(name = "username")
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password")
+    @Column(columnDefinition = "smallint CHECK (password>=4)")
     private String password;
 
     public Account() {

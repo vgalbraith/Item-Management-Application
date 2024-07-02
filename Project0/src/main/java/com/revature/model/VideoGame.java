@@ -10,16 +10,14 @@ public class VideoGame {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "game_id")
+    @Column(updatable = false)
     private Integer game_id;
 
-    @Column(name = "title")
+    @Column(nullable = false)
     private String title;
 
-    @Column(name = "platform")
     private String platform;
 
-    @Column(name = "owned_by")
     private Integer owned_by;
 
     public VideoGame() {
