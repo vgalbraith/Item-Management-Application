@@ -74,16 +74,16 @@ public class VideoGameService {
             throw new BadRequestException("game_id is invalid.");
         }
 
-        if (game.getOwned_by() != null && !accountRepository.existsById(game.getOwned_by())) {
-            throw new BadRequestException("account_id is invalid.");
-        }
-
         if (game.getTitle().isEmpty()) {
             throw new BadRequestException("Game title cannot be blank.");
         }
 
         if (game.getTitle().length() >= 100) {
             throw new BadRequestException("Game title must be less than 100 characters long.");
+        }
+
+        if (game.getOwned_by() != null && !accountRepository.existsById(game.getOwned_by())) {
+            throw new BadRequestException("account_id is invalid.");
         }
 
         VideoGame updatedVideoGame = this.getVideoGameById(game_id);

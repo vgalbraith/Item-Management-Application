@@ -63,7 +63,7 @@ public class Project0Controller {
      * Endpoint for updating a VideoGame given it's game_id.
      *
      * @param game_id
-     * @param game    containing VideoGame data to be updated.
+     * @param game containing VideoGame data to be updated.
      * @return The number of rows affected.
      */
     @PatchMapping("/games/{game_id}")
