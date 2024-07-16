@@ -1,72 +1,51 @@
-# Revature Software Engineer Training
+# Project 0: Item Management Application
 
-This repository contains all the projects and exercises for my Software Engineer training program at Revature. Each project is organized in its own directory with detailed documentation and source code.
+* Assigned Date: 6/25/2024
+* Due Date: 7/3/2024
 
-## Table of Contents
+# Description
 
-1. [Project 0: Item Management Application](#project-0-item-management-application)
+Using Spring Boot (optional), create a simple API for creating and managing items. The items can be whatever you want (i.e. Collectibles, Animals, Employees, Video Games, Shoes, Clothing, etc). Your goal will be to build an API that allows you to store these items and track them as needed.
 
-## Projects
+## Requirements
+- Build the application using at least Java 17 and Spring Boot 3
 
-### Project 0: Item Management Application
+- All interactions between a User and the API should happen via HTTP Requests. Using a tool like Postman will allow you to set up these requests.
 
-**Description:**  
-Project 0 is focused on creating a simple API for managing items. The items can be anything, such as Collectibles, Animals, Employees, Video Games, Shoes, Clothing, etc. The goal is to build an API that allows you to store and track these items.
+- All data should be stored in a PostgreSQL database.
 
-**Contents:**
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
+- The goal of this project is to review basic application design and structure
 
-#### Introduction
+- You'll be expected to complete 4 of the following User Stories as a **MINIMUM**. The more stories implemented the better, but make sure you have at least 4 of the following:
 
-Project 0 involves building an API using Spring Boot (optional) to create and manage items. This project helps in understanding the basics of API development, data storage, and management using modern frameworks.
+    - [x] As a user, I can create a new Item
+    - [x] As a user, I can view all Items
+    - [x] As a user, I can view a singular Item by its ID (HINT: Use Path Params to select a Item by its ID)
+    - [x] As a user, I can update an Item (Change the name or other properties)
+    - [x] As a user, I can delete an Item by its ID (HINT: Use Path Params to select a Item by its ID)
+    - [x] As a user, I can create an account to hold my Items
+    - [x] As a user, I can login to my account (which is stored in the database)
+    - [x] As a user, I can view the Items associated with my account
 
-#### Installation
+- Other Optional Requirements include the following:
+    - [ ] Giving accounts roles (USER and ADMIN) so Admins can view everyone's Items while a User can only view their own
+    - [ ] Using JUnit to test Service Layer methods (70% coverage at least would be optimal)
 
-To install and set up Project 0 on your local machine:
+- **NOTE** Responses from the API must include proper response bodies (in JSON) and **status codes** (i.e. If I try to go to http://localhost:8080/To-Do/5 and there is no resource there, I should receive a 404 status code (NOT FOUND) in the response, but if the resource is there I should receive a 200 status code (OK) instead)
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/2406-Ryan-Java-FS/Victor_Galbraith.git
-    ```
-2. Navigate to the Project 0 directory:
-    ```sh
-    cd Victor_Galbraith/Project0
-    ```
-3. If using Spring Boot, ensure you have Java and Maven installed on your machine.
-4. Install dependencies and build the project:
-    ```sh
-    mvn clean install
-    ```
+## Presentation
+- Use Postman to showcase how your application handles HTTP requests and responses (A Collection on Postman is useful for presenting prewritten HTTP requests)
+- Clear, concise, and professional communication during the project presentation
+- Ability to communicate clear answers to fully address questions asked about the project
+- Logical flow to the project presentation
+- Approx. 5 Minutes in length
 
-#### Usage
-
-Instructions on how to run and use the project:
-
-1. Start the Spring Boot application:
-    ```sh
-    mvn spring-boot:run
-    ```
-2. The API will be available at `http://localhost:8080`.
-3. Use a tool like Postman or curl to interact with the API.
-
-API Endpoints:
-- `POST /games`: As a user, I can create a new VideoGame object
-- `GET /games`: As a user, I can view all VideoGame objects
-- `GET /games/{game_id}`: As a user, I can view a singular VideoGame object by its game_id
-- `PATCH /games/{game_id}`: As a user, I can update an VideoGame object
-- `DELETE /games/{game_id}`: As a user, I can delete an VideoGame object by its game_id
-- `POST /account/register`: As a user, I can create an Account to hold my VideoGame objects
-- `POST /account/login`: As a user, I can login to my Account
-- `POST /account/{account_id}`: As a user, I can view the VideoGame objects associated with my Account
-
-#### Features
-
-- Create, read, update, and delete items.
-- Basic error handling and validation.
-
----
-
-This README will be updated with additional projects and exercises as I progress through my training at Revature.
+# Frequently Asked Questions
+1. When is the project due?
+   >A: July 3rd, 2024
+2. Is there a code freeze?
+   >A: It is recommended that you institute your own code freeze at least a day before the project presentations. However, this is a recommendation only; it will not be enforced. NOTE: The code that will be evaluated by your trainer will be the code you last pushed to your repository BEFORE the time set for project presentations. Code submitted while presentations are on-going will not be evaluated.
+3. What happens if I break my project that was mostly working right before the due date?
+   >A: **As you should have been regularly pushing code to your repository** you should be able to roll back to previously working version. If you have not regularly pushed your code and do not have a working commit to return to you will need to present the state of your application in its current form.
+4. Who will be evaluating the project?
+   >A: Your trainer will be the one providing the full evaluation of your projects. However, the QC team will also be present at presentations to ask questions about your project and consult with your trainer. 
