@@ -2,11 +2,16 @@ package com.revature.controller;
 
 import com.revature.model.VideoGame;
 import com.revature.repository.VideoGameRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -57,17 +62,28 @@ public class VideoGameController {
         return ResponseEntity.created(locationOfNewVideoGame).build();
     }
 
-//    /**
-//     * Endpoint for retrieving all VideoGame objects.
-//     *
-//     * @return A list of all VideoGame objects.
-//     */
-//    @GetMapping("/games")
-//    public ResponseEntity<List<VideoGame>> viewAllVideoGames() {
-//        List<VideoGame> games = videoGameService.getAllVideoGames();
-//        return new ResponseEntity<>(games, HttpStatus.OK);
-//    }
-//
+    /**
+     * Endpoint for retrieving all VideoGame objects with pagination and sorting.
+     *
+     * @param pageable The pagination and sorting information.
+     * @return ResponseEntity containing a list of all VideoGame objects based on the pagination and sorting parameters.
+     * <p>
+     * Possible HTTP status codes:
+     * - 200 OK: If the list of VideoGame objects is successfully retrieved.
+     * - 400 Bad Request: If the provided pagination or sorting parameters are invalid.
+     */
+    @GetMapping
+    private ResponseEntity<List<VideoGame>> findAll(Pageable pageable) {
+        Page<VideoGame> page = videoGameRepository.findAll(
+                PageRequest.of(
+                        pageable.getPageNumber(),
+                        pageable.getPageSize(),
+                        pageable.getSortOr(Sort.by(Sort.Direction.ASC, "title"))
+                ));
+        return ResponseEntity.ok(page.getContent());
+    }
+}
+
 //    /**
 //     * Endpoint for updating a VideoGame given it's game_id.
 //     *
@@ -128,4 +144,3 @@ public class VideoGameController {
 //        List<VideoGame> inventory = videoGameService.viewAccountInventory(account_id);
 //        return new ResponseEntity<>(inventory, HttpStatus.OK);
 //    }
-}
