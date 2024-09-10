@@ -1,17 +1,12 @@
 package com.revature.controller;
 
-import com.revature.model.Account;
 import com.revature.model.VideoGame;
-import com.revature.repository.AccountRepository;
 import com.revature.repository.VideoGameRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +24,7 @@ public class VideoGameController {
      *
      * @param game_id The ID of the VideoGame to retrieve.
      * @return ResponseEntity containing the associated VideoGame object if found,
-     *         or a 404 Not Found status with an empty body if the game is not found.
+     * or a 404 Not Found status with an empty body if the game is not found.
      * <p>
      * Possible HTTP status codes:
      * - 200 OK: If the VideoGame is found.
@@ -45,7 +40,7 @@ public class VideoGameController {
      * Endpoint for creating a new VideoGame.
      *
      * @param newVideoGameRequest The VideoGame object to be created.
-     * @param ucb UriComponentsBuilder used to build the URI for the newly created VideoGame.
+     * @param ucb                 UriComponentsBuilder used to build the URI for the newly created VideoGame.
      * @return ResponseEntity with the location of the newly created VideoGame in the Location header.
      * <p>
      * Possible HTTP status codes:
@@ -53,7 +48,7 @@ public class VideoGameController {
      * - 400 Bad Request: If the provided VideoGame request is invalid.
      */
     @PostMapping
-    private ResponseEntity<Void> createVideoGame(@RequestBody VideoGame newVideoGameRequest, UriComponentsBuilder ucb) {
+    public ResponseEntity<Void> createVideoGame(@RequestBody VideoGame newVideoGameRequest, UriComponentsBuilder ucb) {
         VideoGame savedVideoGame = videoGameRepository.save(newVideoGameRequest);
         URI locationOfNewVideoGame = ucb
                 .path("games/{game_id}")
