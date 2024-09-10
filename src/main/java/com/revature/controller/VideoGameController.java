@@ -4,10 +4,13 @@ import com.revature.model.Account;
 import com.revature.model.VideoGame;
 import com.revature.repository.AccountRepository;
 import com.revature.repository.VideoGameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +18,9 @@ import java.util.Optional;
 @RequestMapping("/games")
 public class VideoGameController {
 
-    private final AccountRepository accountRepository;
     private final VideoGameRepository videoGameRepository;
 
-    public VideoGameController(AccountRepository accountRepository, VideoGameRepository videoGameRepository) {
-        this.accountRepository = accountRepository;
+    public VideoGameController(VideoGameRepository videoGameRepository) {
         this.videoGameRepository = videoGameRepository;
     }
 
@@ -40,18 +41,27 @@ public class VideoGameController {
         return videoGameOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-//    /**
-//     * Endpoint for creating a new VideoGame.
-//     *
-//     * @param game The VideoGame to be created.
-//     * @return The persisted VideoGame including it's newly assigned game_id.
-//     */
-//    @PostMapping("/games")
-//    public ResponseEntity<VideoGame> addVideoGame(@RequestBody VideoGame game) {
-//        VideoGame addedGame = videoGameService.persistVideoGame(game);
-//        return new ResponseEntity<>(addedGame, HttpStatus.OK);
-//    }
-//
+    /**
+     * Endpoint for creating a new VideoGame.
+     *
+     * @param newVideoGameRequest The VideoGame object to be created.
+     * @param ucb UriComponentsBuilder used to build the URI for the newly created VideoGame.
+     * @return ResponseEntity with the location of the newly created VideoGame in the Location header.
+     * <p>
+     * Possible HTTP status codes:
+     * - 201 Created: If the VideoGame is successfully created.
+     * - 400 Bad Request: If the provided VideoGame request is invalid.
+     */
+    @PostMapping
+    private ResponseEntity<Void> createVideoGame(@RequestBody VideoGame newVideoGameRequest, UriComponentsBuilder ucb) {
+        VideoGame savedVideoGame = videoGameRepository.save(newVideoGameRequest);
+        URI locationOfNewVideoGame = ucb
+                .path("games/{game_id}")
+                .buildAndExpand(savedVideoGame.game_id())
+                .toUri();
+        return ResponseEntity.created(locationOfNewVideoGame).build();
+    }
+
 //    /**
 //     * Endpoint for retrieving all VideoGame objects.
 //     *
